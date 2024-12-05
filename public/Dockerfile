@@ -1,9 +1,4 @@
-FROM node:16-alpine
-
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-
-CMD ["npm","start"]
+FROM nginx:1.27.3-alpine-slim
+COPY /build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
